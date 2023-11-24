@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
   # If the save is successful, the action redirects the browser to the article's page.
   # Else the action redisplays the form with an error message.
   def create
-    @article = Article.new(title: "...", body: "...")
+    @article = Article.new(article_params)
 
     if @article.save
       redirect_to @article
@@ -42,6 +42,8 @@ class ArticlesController < ApplicationController
     end
   end
 
+  # fetches the article form the database and destroys it.
+  # redirects the browser to the root path with 303-message
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
